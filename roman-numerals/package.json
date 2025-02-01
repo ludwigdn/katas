@@ -1,0 +1,18 @@
+{
+  "name": "roman-numerals-kata-ts",
+  "version": "1.0.0",
+  "author": "Team Simplon",
+  "scripts": {
+    "format": "prettier --write src",
+    "test": "jest",
+    "tdd": "jest --watch"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^28.1.8",
+    "jest": "^28.1.3",
+    "prettier": "2.7.1",
+    "ts-jest": "^28.0.8",
+    "typescript": "^4.8.2"
+  }
+}
