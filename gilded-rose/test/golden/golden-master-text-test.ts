@@ -1,19 +1,42 @@
-import { Item, GildedRose } from '../../app/gilded-rose';
+import { BackstagePass } from "../../app/types/backstage-pass";
+import { Cheese } from "../../app/types/cheese";
+import { ConjuredItem } from "../../app/types/conjured-item";
+import { Elixir } from "../../app/types/elixir";
+import { Equipment } from "../../app/types/equipment";
+import { Sulfura } from "../../app/types/sulfura";
+import { GildedRose } from "../../app/gilded-rose";
 
-export const createGildedRose = (days: number) => {
-
+export const createGildedRose = (days: number, useLegacy: boolean) => {
   const items = [
-    new Item("+5 Dexterity Vest", 10, 20), //
-    new Item("Aged Brie", 2, 0), //
-    new Item("Elixir of the Mongoose", 5, 7), //
-    new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-    new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-    new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-    new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+    new Equipment({ name: "+5 Dexterity Vest", sellIn: 10, quality: 20 }), //
+    new Cheese({ name: "Aged Brie", sellIn: 2, quality: 0 }), //
+    new Elixir({ name: "Elixir of the Mongoose", sellIn: 5, quality: 7 }), //
+    new Sulfura({
+      name: "Sulfuras, Hand of Ragnaros",
+      sellIn: 0,
+    }), //
+    new Sulfura({
+      name: "Sulfuras, Hand of Ragnaros",
+      sellIn: -1,
+    }),
+    new BackstagePass({
+      name: "Backstage passes to a TAFKAL80ETC concert",
+      sellIn: 15,
+      quality: 20,
+    }),
+    new BackstagePass({
+      name: "Backstage passes to a TAFKAL80ETC concert",
+      sellIn: 10,
+      quality: 49,
+    }),
+    new BackstagePass({
+      name: "Backstage passes to a TAFKAL80ETC concert",
+      sellIn: 5,
+      quality: 49,
+    }),
     // this conjured item does not work properly yet
-    new Item("Conjured Mana Cake", 3, 6)];
-
+    new ConjuredItem({ name: "Conjured Mana Cake", sellIn: 3, quality: 6 }),
+  ];
 
   const gildedRose = new GildedRose(items);
 
@@ -23,15 +46,15 @@ export const createGildedRose = (days: number) => {
     result += "-------- day " + i + " --------\n";
     result += "name, sellIn, quality\n";
 
-    items.forEach(element => {
-      result += element.name + ' ' + element.sellIn + ' ' + element.quality + "\n";
+    items.forEach((element) => {
+      result +=
+        element.name + " " + element.sellIn + " " + element.quality + "\n";
     });
 
-    result += "\n"
+    result += "\n";
 
-    gildedRose.updateQuality();
+    gildedRose.updateQuality(useLegacy);
   }
 
-  return result
-
-}
+  return result;
+};

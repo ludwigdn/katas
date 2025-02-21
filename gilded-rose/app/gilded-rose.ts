@@ -1,14 +1,4 @@
-export class Item {
-  name: string;
-  sellIn: number;
-  quality: number;
-
-  constructor(name, sellIn, quality) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
+import { Item } from "./types/item";
 
 export class GildedRose {
   items: Array<Item>;
@@ -17,7 +7,18 @@ export class GildedRose {
     this.items = items;
   }
 
-  updateQuality() {
+  public updateQuality(uselegacy: boolean) {
+    return uselegacy ? this._updateQualityLegacy() : this._updateQuality();
+  }
+
+  private _updateQuality() {
+    return this.items.map((item) => {
+      item.goToNextDay();
+    });
+  }
+
+  /** @deprecated **/
+  private _updateQualityLegacy() {
     for (let i = 0; i < this.items.length; i++) {
       if (
         this.items[i].name != "Aged Brie" &&

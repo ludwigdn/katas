@@ -6,6 +6,6 @@ if (process.argv.length > 2) {
   days = +process.argv[2];
 }
 
-const result = createGildedRose(days);
+const result = createGildedRose(days, false);
 
 console.log(result);
