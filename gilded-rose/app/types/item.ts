@@ -11,10 +11,10 @@ export abstract class Item {
     sellIn,
     quality,
   }: {
-    name: string;
-    sellIn: number;
-    quality: number;
-  }) {
+      name: string;
+      sellIn: number;
+      quality: number;
+    }) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
@@ -32,7 +32,7 @@ export abstract class Item {
   protected hasReachedMaxQuality = () => this.quality >= this.maxQuality;
   protected isOverdue = () => this.sellIn < 0;
 
-  protected addToQuality(raise) {
+  protected addToQuality(raise: number) {
     this.quality += raise;
     this.checkIfShouldSetQualityCeiling();
     this.checkIfShouldSetQualityFloor();

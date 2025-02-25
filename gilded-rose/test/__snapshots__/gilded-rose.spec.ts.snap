@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gilded Rose Refacto should match legacy and snapshot 1`] = `
+exports[`Gilded Rose should match all of legacy process, new process and snapshot results 1`] = `
 "-------- day 0 --------
 name, sellIn, quality
 +5 Dexterity Vest 10 20

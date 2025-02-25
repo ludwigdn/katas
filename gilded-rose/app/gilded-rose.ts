@@ -1,20 +1,21 @@
 import { Item } from "./types/item";
 
 export class GildedRose {
-  items: Array<Item>;
+  constructor(
+    private items = [] as Array<Item>,
+    private useLegacy = false,
+  ) {}
 
-  constructor(items = [] as Array<Item>) {
-    this.items = items;
-  }
-
-  public updateQuality(uselegacy: boolean) {
-    return uselegacy ? this._updateQualityLegacy() : this._updateQuality();
+  public updateQuality() {
+    if (this.useLegacy) {
+      this._updateQualityLegacy();
+    } else {
+      this._updateQuality();
+    }
   }
 
   private _updateQuality() {
-    return this.items.map((item) => {
-      item.goToNextDay();
-    });
+    this.items.forEach((item) => item.goToNextDay());
   }
 
   /** @deprecated **/
@@ -22,7 +23,7 @@ export class GildedRose {
     for (let i = 0; i < this.items.length; i++) {
       if (
         this.items[i].name != "Aged Brie" &&
-        this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
+          this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
       ) {
         if (this.items[i].quality > 0) {
           if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
@@ -72,7 +73,5 @@ export class GildedRose {
         }
       }
     }
-
-    return this.items;
   }
 }

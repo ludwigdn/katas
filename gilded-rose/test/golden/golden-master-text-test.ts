@@ -38,7 +38,7 @@ export const createGildedRose = (days: number, useLegacy: boolean) => {
     new ConjuredItem({ name: "Conjured Mana Cake", sellIn: 3, quality: 6 }),
   ];
 
-  const gildedRose = new GildedRose(items);
+  const gildedRose = new GildedRose(items, useLegacy);
 
   let result = "";
 
@@ -53,7 +53,7 @@ export const createGildedRose = (days: number, useLegacy: boolean) => {
 
     result += "\n";
 
-    gildedRose.updateQuality(useLegacy);
+    gildedRose.updateQuality();
   }
 
   return result;
