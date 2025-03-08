@@ -1,4 +1,4 @@
-import { roman } from "./roman";
+import { ArabicToRomanNumber } from "./roman";
 
 describe("Roman numerals converter", () => {
   test.each([
@@ -21,7 +21,11 @@ describe("Roman numerals converter", () => {
     [3999, "MMMCMXCIX"],
   ])(
     "It should convert %i to '%s'",
-    (arabicNumber: number, romanNumber: string) =>
-      expect(roman(arabicNumber)).toBe(romanNumber)
+    (arabicNumber: number, romanNumber: string) => {
+      const processedRomanNumber = new ArabicToRomanNumber(
+        arabicNumber
+      ).execute();
+      expect(processedRomanNumber).toBe(romanNumber);
+    }
   );
 });
